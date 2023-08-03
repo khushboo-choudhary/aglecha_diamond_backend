@@ -11,7 +11,6 @@ const register = async (req, res) => {
   try {
     // we will try to find the user with the email provided
     const user = await User.findOne({ email: req.body.email }).lean().exec();
-    console.log("======", user);
     // if the user is found then it is an error
     if (user) return res.status(400).send({ message: "User already exists" });
 
