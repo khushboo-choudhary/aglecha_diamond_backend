@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (token) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, "web14khushboo", (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
       if (err) return reject(err);
 
       resolve(decoded);
