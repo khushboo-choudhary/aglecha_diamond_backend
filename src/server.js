@@ -50,7 +50,7 @@ app.get(
     console.log("req", req);
     const token = newToken(user);
     return res.redirect(
-      `https://aglecha-diamonds-app.vercel.app/google-oauth2success?token=${token}&name=${user.name}&profileImage=${user.profileImage}`
+      `https://aglecha-diamond-62fu.vercel.app/google-oauth2success?token=${token}&name=${user.name}`
     );
     // return res.redirect(
     //   "/google-oauth2success?token=${token}&name=${user.name}"

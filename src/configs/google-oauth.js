@@ -9,11 +9,13 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:2345/auth/google/callback",
+      // https://glamorous-frog-cummerbund.cyclic.cloud
+      callbackURL:
+        "http://glamorous-frog-cummerbund.cyclic.cloud/auth/google/callback",
     },
     async function (request, accessToken, refreshToken, profile, done) {
       // console.log("user", request, accessToken, refreshToken);
-      // console.log("profile", profile);
+      console.log("profile", profile);
       let user = await User.findOne({ email: profile?.email }).lean().exec();
 
       if (!user) {
