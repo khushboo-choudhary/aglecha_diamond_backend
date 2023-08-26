@@ -10,8 +10,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       // https://glamorous-frog-cummerbund.cyclic.cloud
-      callbackURL:
-        "http://glamorous-frog-cummerbund.cyclic.cloud/auth/google/callback",
+      callbackURL: "http://localhost:2345/auth/google/callback",
     },
     async function (request, accessToken, refreshToken, profile, done) {
       // console.log("user", request, accessToken, refreshToken);
