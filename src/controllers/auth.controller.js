@@ -4,7 +4,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 
 const newToken = (user) => {
-  return jwt.sign({ user }, "web14khushboo");
+  return jwt.sign({ user }, process.env.JWT_SECRET_KEY);
 };
 
 const register = async (req, res) => {
@@ -16,14 +16,11 @@ const register = async (req, res) => {
 
     // if user is not found then we will create the user with the email and the password provided
     const newUser = await User.create(req.body);
-    console.log("---------", newUser);
     // then we will create the token for that user
     const token = newToken(newUser);
 
     // then return the user and the token
-
-    // res.send({ user, token });
-    return res.status(201).json({
+    return res.status(201).send({
       msg: "User created successfully",
       name: newUser.name,
       profileImage: newUser.profileImage,
@@ -39,7 +36,7 @@ const login = async (req, res) => {
     if (!req.body.email || !req.body.password) {
       return res
         .status(400)
-        .json({ msg: "Please enter both email or password" });
+        .send({ message: "Please enter both email or password" });
     }
 
     // we will try to find the user with the email provided
@@ -61,13 +58,12 @@ const login = async (req, res) => {
     const token = newToken(user);
 
     // then return the user and the token
-    return res.status(200).json({
+    return res.status(200).send({
       msg: "Login Successful",
       name: user.name,
       profileImage: user.profileImage,
       token,
     });
-    // res.send({ user, token });
   } catch (err) {
     return res.status(500).send(err.message);
   }

@@ -47,26 +47,13 @@ app.get(
   }),
   (req, res) => {
     const { user } = req;
-    // console.log("req", req);
     const token = newToken(user);
-    // return res.send({ token, user });
     return res.redirect(
-      `http://localhost:2345/google-oauth2success?token=${token}&name=${user.name}`
-      // `https://aglecha-diamond-62fu.vercel.app/google-oauth2success?token=${token}&name=${user.name}`
+      `http://localhost:3000/?token=${token}&name=${user.name}&profile=${user.profileImage}`
+      //   // `https://aglecha-diamond-62fu.vercel.app/google-oauth2success?token=${token}&name=${user.name}`
     );
-    // return res.redirect(
-    //   "/google-oauth2success?token=${token}&name=${user.name}"
-    // );
   }
 );
-
-app.get("/google-oauth2success", (req, res) => {
-  // Handle the redirect logic here
-  const token = req.query.token;
-  const name = req.query.name;
-  // ... do something with token and name ...
-  // Return a response if needed
-});
 
 app.get("/auth/google/failure", (req, res) => {
   return res.status(400).json({ msg: "Login Failed" });

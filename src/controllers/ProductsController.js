@@ -19,7 +19,6 @@ router.post("", async (req, res) => {
 router.get("", async (req, res) => {
   try {
     const data = await Todos.find().lean().exec();
-    console.log("gfgfdtrtdggfesaw5w56576", data);
     return res.send(data);
   } catch (error) {
     return res.send(error);
@@ -38,8 +37,6 @@ router.get("/id/:id", async (req, res) => {
     return res.send(error);
   }
 });
-//http://localhost:2345/product/search
-// Backend API endpoint for searching products
 
 // Debounce function to delay API calls when typing
 let previousSearchResults = [];
@@ -60,7 +57,7 @@ const debouncedSearch = debounce(async (query, res) => {
         previousSearchResults.push(...filterCtegory);
         return res.send(filterCtegory);
       } catch (error) {
-        return res.status(500).json({ error: "Internal server error." });
+        return res.status(500).send({ message: "Internal server error." });
       }
     } else {
       // If no search query is provided, return all products
@@ -74,7 +71,7 @@ const debouncedSearch = debounce(async (query, res) => {
       // return res.status(404).send("Not found product");
     }
   } catch (error) {
-    return res.status(500).send({ error: "Internal server error." });
+    return res.status(500).send({ message: "Internal server error." });
   }
 }, 300); // 300ms delay for debouncing
 
@@ -90,7 +87,7 @@ router.get("/search", async (req, res) => {
       return res.send(data);
     }
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error." });
+    return res.status(500).send({ message: "Internal server error." });
   }
 });
 

@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   try {
     const users = await User.find().lean().exec();
 
-    res.status(200).json(users);
+    res.status(200).send(users);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id).lean().exec();
-    res.status(200).json(user);
+    res.status(200).send(user);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
   try {
     const user = await User.create(req.body);
 
-    res.status(201).json({ msg: "User created successfully", user });
+    res.status(201).send({ message: "User created successfully", user });
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -43,7 +43,7 @@ router.patch("/", async (req, res) => {
       new: true,
     });
 
-    res.status(200).json({ msg: "User updated successfully", user });
+    res.status(200).send({ message: "User updated successfully", user });
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
 
-    res.status(200).json({ msg: "User deleted successfully", user });
+    res.status(200).send({ message: "User deleted successfully", user });
   } catch (err) {
     res.status(500).send(err.message);
   }
