@@ -9,10 +9,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // https://glamorous-frog-cummerbund.cyclic.cloud
       callbackURL:
         "https://fancy-dove-stockings.cyclic.cloud/auth/google/callback",
-      // "http://localhost:2345/auth/google/callback",
       scope: ["profile", "email"],
     },
     async function (request, accessToken, refreshToken, profile, done) {
