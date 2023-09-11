@@ -49,8 +49,7 @@ app.get(
     const { user } = req;
     const token = newToken(user);
     return res.redirect(
-      `http://localhost:3000/?token=${token}&name=${user.name}&profile=${user.profileImage}`
-      //   // `https://aglecha-diamond-62fu.vercel.app/google-oauth2success?token=${token}&name=${user.name}`
+      `https://aglecha-diamond-frontend.vercel.app/?token=${token}&name=${user.name}&profile=${user.profileImage}`
     );
   }
 );
