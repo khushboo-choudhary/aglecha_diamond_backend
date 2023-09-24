@@ -1,17 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const connect = require("./src/configs/db");
+const connect = require("./configs/db");
 require("dotenv").config();
 const app = express();
-const paymentRoutes = require("./src/controllers/payment");
-const productApi = require("./src/controllers/ProductsController");
-const passport = require("./src/configs/google-oauth");
-const userController = require("./src/controllers/user.controller");
-const {
-  register,
-  login,
-  newToken,
-} = require("./src/controllers/auth.controller");
+const paymentRoutes = require("./controllers/payment");
+const productApi = require("./controllers/ProductsController");
+const passport = require("./configs/google-oauth");
+const userController = require("./controllers/user.controller");
+const { register, login, newToken } = require("./controllers/auth.controller");
 
 app.use(cors());
 app.use(express.json());
