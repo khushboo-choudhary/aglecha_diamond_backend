@@ -9,8 +9,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL:
-        "https://fancy-dove-stockings.cyclic.cloud/auth/google/callback",
+      callbackURL: "https://aglecha-backend.onrender.com/auth/google/callback",
       scope: ["profile", "email"],
     },
     async function (request, accessToken, refreshToken, profile, done) {
